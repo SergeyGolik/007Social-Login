@@ -7,6 +7,8 @@ class ControllerCommonHeader extends Controller {
 		$data['analytics'] = array();
 
 		$analytics = $this->model_extension_extension->getExtensions('analytics');
+		$this->document->addStyle('catalog/view/theme/default/stylesheet/d_social_login/styles.css');
+		$this->document->addScript('catalog/view/javascript/d_social_login/spin.min.js');
 
 		foreach ($analytics as $analytic) {
 			if ($this->config->get($analytic['code'] . '_status')) {
@@ -136,7 +138,7 @@ class ControllerCommonHeader extends Controller {
 				);
 			}
 		}
-
+		$data['header_content'] = $this->load->controller('common/header_content');
 		$data['language'] = $this->load->controller('common/language');
 		$data['currency'] = $this->load->controller('common/currency');
 		$data['search'] = $this->load->controller('common/search');
